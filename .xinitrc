@@ -1,4 +1,4 @@
-xr db -merge .Xresources &
+xrdb -merge .Xresources &
  xmonad
  xmobar &
 # `qutebrowser &

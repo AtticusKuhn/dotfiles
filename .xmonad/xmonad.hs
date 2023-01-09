@@ -34,6 +34,7 @@ myKeyBindings =    [
         ("<XF86MonBrightnessDown>", spawn "light -U 2"),
         ("M-f", spawn "$BROWSER"),
         ("M-e", spawn "st -e $EDITOR")
+        , ("M-v", spawn "st -e $VISUAL")
 --        ("M-r", spawn "st -e ranger")
       -- , ((modMask x, xK_b     ), sendMessage ToggleStruts)
     ]
