@@ -34,7 +34,7 @@ myKeyBindings =    [
         ("<XF86MonBrightnessDown>", spawn "light -U 2"),
         ("M-f", spawn "$BROWSER"),
         ("M-e", spawn "st -e $EDITOR")
-        , ("M-v", spawn "st -e $VISUAL")
+        , ("M-v", spawn "$VISUAL")
 --        ("M-r", spawn "st -e ranger")
       -- , ((modMask x, xK_b     ), sendMessage ToggleStruts)
     ]
@@ -55,7 +55,14 @@ main = do
   xmobar_process <- spawnPipe "xmobar /home/atticusk/.xmobarrc"
   xmonad $ docks $ (def { terminal = myTerminal
 	, modMask = mod4Mask
-  , handleEventHook    = windowedFullscreenFixEventHook <> swallowEventHook (className =? "Alacritty"  <||> className =? "st-256color" <||> className =? "XTerm") (return True) <> trayerPaddingXmobarEventHook
+  , handleEventHook    = windowedFullscreenFixEventHook <> swallowEventHook (className =? "Alacritty"
+                                                                             <||> className =? "st-256color"
+                                                                             <||> className =? "St"
+                                                                             <||> className =? "XTerm"
+                                                                             <||> className =? "emacsclient"
+                                                                             <||> className =? "*doom* – Doom Emacs"
+                                                                             <||> className =? "sxiv"
+                                                                             <||> className =? "org.pwmt.zathura") (return True) <> trayerPaddingXmobarEventHook
      , layoutHook=avoidStruts $ layoutHook def
     , manageHook=manageHook def <+> manageDocks
 	, borderWidth = 3
